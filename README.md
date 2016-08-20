@@ -28,21 +28,21 @@ User Stories:
 
 Specs:
 
-- [ ] Be able to create to do list items.
-- [ ] Implement CRUD on all to do list items and their contents. 
-- [ ] Create capability to check off items. 
-- [ ] I can rearrange to do list items.
-- [ ] Create a user login.
+- [ ] Be able to create to do list items
+- [ ] Implement CRUD on all to do list items and their contents 
+- [ ] Create capability to check off items 
+- [ ] Create ability to rearrange to do list items
+- [ ] Create a user login
 
 Additional Specs:
 
-- [ ]Create a database of to do list items.
-- [ ]Create the back end using node and express.
-- [ ]Deploy the app to heroku.
-- [ ]JS Lint finds no mistakes
-- [ ]Follow good Git team behaviors (do all your work on branches & submit pull requests for review before merging to master)
-- [ ]The artifact produced is properly licensed, preferably with the MIT license.
+- [ ] Create a database of to do list items
+- [ ] Create the back end using node and express
+- [ ] Deploy the app to heroku
+- [ ] JS Lint finds no mistakes
+- [ ] Follow good Git team behaviors (do all your work on branches & submit pull requests for review before merging to master)
+- [ ] The artifact produced is properly licensed, preferably with the MIT license.
 Stretch Goals/Nice to Have's:
 
-- [ ]I can create mulitple lists of to do's.
-- [ ]Write the app using ES6 and deploy using babel.
+- [ ] I can create mulitple lists of to do's
+- [ ] Write the app using ES6 and deploy using babel
