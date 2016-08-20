@@ -24,7 +24,7 @@ User Stories:
 - [ ] I can check items off as completed.
 - [ ] I can rearrange to do list items.
 - [ ] I can log into my account.
-- [ ] I can edit the text on existing to do's.
+- [ ] I can edit the text on existing to do's
 
 Specs:
 
