@@ -26,6 +26,5 @@ Specs:
 - [ ] Use `node` and `express`
 - [X] The artifact produced is properly licensed, preferably with the MIT license.
 - [ ] Deploy the app to heroku
-- 
-![ScreenShot](Screen Shot 2016-08-22 at 10.10.36 AM)
+
 
