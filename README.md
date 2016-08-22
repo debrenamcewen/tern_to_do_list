@@ -16,17 +16,13 @@ User Stories:
 
 Specs:
 
-- [ ] Be able to create to do list items
-- [ ] Implement CRUD on all to do list items and their contents 
-- [ ] Create capability to check off items 
-- [ ] Create ability to rearrange and sort to do list items
-- [ ] Create a user login
+- [ ] Visitors can sign up / sign in / sign out
+- [ ] A logged in user can CRUD `todo list` items
+- [ ] A logged in user can `complete` and `uncomplete` a `todo list` item.
+- [ ] A logged in user can sort their `todo list` items
+- [ ] Has unoffensive and darn near attactive layout / design / style.
 - [ ] Follow good Git team behaviors (do all your work on branches & submit pull requests for review before merging to master)
-- [ ] Create a database of to do list items
-- [ ] Create the back end using node and express
-- [x] The artifact produced is properly licensed, preferably with the MIT license.
-
-Stretch Goals/Nice to Have's:
-
-- [ ] Write the app using ES6 and deploy using babel
+- [ ] Use `Postgresql`
+- [ ] Use `node` and `express`
+- [X] The artifact produced is properly licensed, preferably with the MIT license.
 - [ ] Deploy the app to heroku
