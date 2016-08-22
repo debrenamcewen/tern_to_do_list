@@ -28,7 +28,8 @@ SELECT
 FROM
   users
 WHERE
-  users.id = user_id
+  users.id = todo_list_items.user_id
+
 
 INSERT INTO todo_list_items VALUES (
   id PRIMARY KEY NOT NULL
