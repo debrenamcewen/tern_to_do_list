@@ -27,5 +27,4 @@ Specs:
 - [X] The artifact produced is properly licensed, preferably with the MIT license.
 - [ ] Deploy the app to heroku
 
-![ScreenShot](https://www.flickr.com/photos/146307455@N04/29126646906/in/dateposted-public/)
 
