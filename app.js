@@ -11,6 +11,7 @@ var expressSession = require('express-session')
 var database = require('./database');
 var routes = require('./routes');
 var users = require('./routes/users');
+var index = require('./routes/index')
 // var login = require('./routes/users');
 
 var app = express();
@@ -50,6 +51,11 @@ const getCurrentUser = function(){
 
 app.use('/', routes);
 app.use('/users', users);
+
+app.get('/signup', users);
+app.post('/signup', users);
+// from jared's notes
+
 // app.use('/login', login);
 // app.get('login', login);
 // app.get('todo', todo);

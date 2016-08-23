@@ -10,6 +10,7 @@ router.get('/', function(req, res){
   });
 });
 
+
 // router.get('/:userId', function(req, res){
 //
 //   if(res.cookie('email', 'password', {signed: true})){
@@ -25,10 +26,10 @@ router.get('/', function(req, res){
 //
 
 // // //login
-router.get('/users', function(req, res) {
-  req.session.lastPage = '/users';
-  res.send('You are logged in');
-});
+// router.get('/users', function(req, res) {
+//   req.session.lastPage = '/users';
+//   res.send('You are logged in');
+// });
 
 
 // req.session.name = 'users';

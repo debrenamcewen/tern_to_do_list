@@ -4,14 +4,19 @@ CREATE TABLE users (
   encrypted_password VARCHAR(255)
 );
 
+CREATE UNIQUE INDEX email ON users (email);
+
+
 CREATE TABLE todo_list_items (
   id PRIMARY KEY NOT NULL
   user_id INTEGER NOT NULL
   description VARCHAR(255) NOT NULL
   note TEXT
   rank INTEGER
-  due_date DATE
+  due_date DATE NOT NULL
 );
+
+
 
 SELECT
   *
@@ -31,11 +36,11 @@ WHERE
   users.id = todo_list_items.user_id
 
 
-INSERT INTO todo_list_items VALUES (
-  id PRIMARY KEY NOT NULL
-  user_id INTEGER NOT NULL
-  description VARCHAR(255) NOT NULL
-  note TEXT
-  rank INTEGER
-  due_date DATE
-);
+-- INSERT INTO todo_list_items VALUES (
+--   id PRIMARY KEY NOT NULL
+--   user_id INTEGER NOT NULL
+--   description VARCHAR(255) NOT NULL
+--   note TEXT
+--   rank INTEGER
+--   due_date DATE
+-- );

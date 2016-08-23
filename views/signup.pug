@@ -3,10 +3,15 @@ extends layout
 block content
 
   h1= title
+  if error
+    h2.error-message= error
   p Signup Page
-    form(action="/users", method="get")
-      input(type="text" id="email", placeholder="Email")
-      br
-      input(type="text" id="password", placeholder="password")
-      br
-      input(type="submit", value="Signup Here")
+    form(method="post" action="/signup")
+      div
+        input(type="text" id="email", placeholder="Email", value=email)
+      div
+        input(type="password" id="password", placeholder="password")
+      div
+        input(type="password" id="password_confirmation", placeholder="password confirmation")
+      div
+        input(type="submit", value="Signup Here")
