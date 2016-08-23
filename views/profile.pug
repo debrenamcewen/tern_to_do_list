@@ -1,0 +1,16 @@
+extends layout
+
+block content
+
+  h1= title
+  p Welcome Back #{currentUser.email}
+
+  ul
+    li
+      a.btn.btn-default(href="/logout") Logout
+    li
+      a.btn.btn-default(href="/todo") Todo Lists
+
+
+  h4 Current User
+  pre= JSON.stringify(currentUser, null, 4)

@@ -12,9 +12,27 @@ const getAllToDoListItems = function(id){
   return db.any("select * from todo_list_items");
 }
 
+const authenticateUser = function(email, password){
+  const sql = `
+    SELECT
+      id
+    FROM
+      users
+    WHERE
+      email=$1
+    AND
+      encrypted_password=$2
+    LIMIT
+      1
+  `
+  return db.oneOrNone(sql, [email, password])
+    .then(user => user ? user.id : null )
+}
+
 module.exports = {
   pgp: pgp,
   db: db,
+  authenticateUser: authenticateUser,
   getUserById: getUserById,
   getAllToDoListItems: getAllToDoListItems,
 };

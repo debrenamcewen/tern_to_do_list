@@ -3,10 +3,13 @@ extends layout
 block content
 
   h1= title
+  if error
+    h2.error-message= error
   p Login Page
-    form(action="/users", method="get")
-      input(type="text" id="email", placeholder="Email")
-      br
-      input(type="text" id="password", placeholder="password")
-      br
-      input(type="submit", value="Login here")
+    form(method="post" action="/login")
+      div
+        input(type="text" name="email", placeholder="Email")
+      div
+        input(type="password" name="password", placeholder="password")
+      div
+        input(type="submit", value="Login here")
