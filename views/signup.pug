@@ -8,10 +8,10 @@ block content
   p Signup Page
     form(method="post" action="/signup")
       div
-        input(type="text" id="email", placeholder="Email", value=email)
+        input(type="text" name="user[email]", placeholder="Email", value=email)
       div
-        input(type="password" id="password", placeholder="password")
+        input(type="password" name="user[password]", placeholder="password")
       div
-        input(type="password" id="password_confirmation", placeholder="password confirmation")
+        input(type="password" name="user[password_confirmation]", placeholder="password confirmation")
       div
         input(type="submit", value="Signup Here")

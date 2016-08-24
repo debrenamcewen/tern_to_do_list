@@ -1,5 +1,5 @@
 'use strict';
-const databaseName = process.env.NODE_ENV === 'ter_to_do_list'
+const databaseName = process.env.NODE_ENV === 'tern_to_do_list'
 const pgp = require('pg-promise')();
 const connectionString = `postgres://${process.env.USER}@localhost:5432/tern_to_do_list`
 const db = pgp(connectionString);
@@ -12,15 +12,15 @@ const getUserById = function(userId){
 //   return db.any("select * from todo_list_items");
 // }
 
-const createUser = function(email, password) {
+const createUser = function(attributes) {
   const sql =  `
-  INSERT INTO
-  users (email, password)
-  VALUES
-  ($1, $2)
-  RETURNING
-  *
-  `
+    INSERT INTO
+      users (email, encrypted_password)
+    VALUES
+      ($1, $2)
+    RETURNING
+      *
+    `
   const variables = [
     attributes.email,
     attributes.password,
@@ -44,7 +44,6 @@ const authenticateUser = function(email, password){
   return db.oneOrNone(sql, [email, password])
     .then(user => user ? user.id : null )
 }
-
 
 module.exports = {
   pgp: pgp,
