@@ -3,13 +3,16 @@ var router = express.Router();
 var database = require('../database');
 
 /* GET home page. */
+
+
 router.get('/', function(req, res){
   if (req.loggedIn){
     // database.getUserById(req.session.userId)
     req.getCurrentUser()
       .then(user => {
         res.render('profile', {
-          currentUser: user
+          currentUser: user,
+          todo: { }
         });
       })
   }else{
@@ -26,6 +29,12 @@ router.get('/login', function(req, res){
 router.get('/signup', function(req, res){
   res.render('signup', {
     email: ''
+  })
+})
+
+router.get('/todos', function(req, res){
+  res.render('homepage', {
+    description: ''
   })
 })
 
@@ -46,8 +55,6 @@ router.post('/login', function(req, res){
 
 
 router.post('/signup', function(req, res) {
-  // res.json(req.body)
-  //   return
   const attributes = req.body.user
   const email = attributes.email
   const password = attributes.password
@@ -60,16 +67,54 @@ router.post('/signup', function(req, res) {
       } else {
         database.createUser(attributes)
           .then(user => {
-          login(req, user.id)
-          res.redirect('/')
-        }).catch(error => {
-          res.render('homepage', {
-            error: error,
-            email: email,
+            login(req, user.id)
+            res.redirect('/')
           })
-        })
+          .catch(error => {
+            res.render('homepage', {
+              error: error,
+              email: email,
+            })
+          })
     }
 })
+
+router.post('/todos', function(req, res){
+  var todo = req.body.todo
+  todo.userId = req.session.userId
+  database.createTodo(todo)
+    .then(todo => {
+      res.redirect('/')
+    })
+    .catch(error => {
+      res.render('new_todo_form', {
+        error: error.toString(),
+        todo: todo,
+      })
+    })
+})
+
+// router.post('/profile', function(req,res){
+//   const attributes = req.body.user
+//   const description = attributes.description
+//   const note = attributes.note
+//   const rank = attributes.rank
+//   const due_date = attributes.due_date
+//   if(description){
+//     Promise.all([
+//       database.getUserById(userId),
+//       database.createToDo(attributes)
+//     // ])
+//       .then( results => {
+//         login(req, user.id)
+//           res.redirect('/')
+//         }).catch(error => {
+//           res.render('profile', {
+//             error: error,
+//             description: description
+//         })
+//
+
 
 router.get('/logout', function(req, res){
   req.session = null

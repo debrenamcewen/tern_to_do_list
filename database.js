@@ -28,6 +28,25 @@ const createUser = function(attributes) {
   return db.oneOrNone(sql, variables)
 }
 
+const createTodo = function(attributes) {
+  const sql =  `
+    INSERT INTO
+      todo_list_items (user_id, description, note, rank, due_date)
+    VALUES
+      ($1, $2, $3, $4, $5)
+    RETURNING
+      *
+    `
+  const variables = [
+    attributes.userId,
+    attributes.description,
+    attributes.note,
+    attributes.rank,
+    attributes.due_date,
+  ]
+  return db.one(sql, variables)
+}
+
 const authenticateUser = function(email, password){
   const sql = `
     SELECT
@@ -51,4 +70,5 @@ module.exports = {
   authenticateUser: authenticateUser,
   createUser: createUser,
   getUserById: getUserById,
+  createTodo: createTodo,
 };

@@ -1,0 +1,11 @@
+form(method="post" action="/todos")
+  div
+    input(type="text" name="todo[description]" value=todo.description placeholder="description")
+  div
+    input(type="text" name="todo[note]" value=todo.note placeholder="note")
+  div
+    input(type="integer" name="todo[rank]" value=todo.rank placeholder="rank")
+  div
+    input(type="date" name="todo[due_date]" value=todo.due_date placeholder="due date")
+  div
+    input(type="submit", value="Get todoin")

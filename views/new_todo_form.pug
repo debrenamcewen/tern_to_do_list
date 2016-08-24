@@ -1,0 +1,7 @@
+extends layout
+
+block content
+  h1 New Todo
+  if error
+    h2= error
+  include ./_new_todo_form

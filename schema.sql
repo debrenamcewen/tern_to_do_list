@@ -15,7 +15,7 @@ CREATE TABLE todo_list_items (
   user_id INTEGER NOT NULL,
   description VARCHAR(255) NOT NULL,
   note TEXT,
-  rank INTEGER,
+  rank INTEGER NOT NULL,
   due_date DATE NOT NULL
 );
 
