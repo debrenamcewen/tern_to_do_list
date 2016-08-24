@@ -1,0 +1,17 @@
+extends layout
+
+block content
+
+  h1= title
+  if error
+    h2.error-message= error
+  p Signup Page
+    form(method="post" action="/signup")
+      div
+        input(type="text" name="user[email]", placeholder="Email", value=email)
+      div
+        input(type="password" name="user[password]", placeholder="password")
+      div
+        input(type="password" name="user[password_confirmation]", placeholder="password confirmation")
+      div
+        input(type="submit", value="Signup Here")
