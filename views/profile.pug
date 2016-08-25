@@ -5,28 +5,27 @@ block content
   h1= title
   p Welcome Back #{currentUser.email}
 
-  ul
-    li
-      a.btn.btn-default(href="/logout") Logout
-    //- li
-    //-   a.btn.btn-default(href="/signup") Todo Lists
 
-  p Big List of Things You Are Going to DO!
+  h2 It All Starts With A Step
   ul
+    h3 Your Steps
     for todo in todos
       li
         span= todo.description
-        a(href="/todos/"+todo.id+"/uncomplete") NOT DONE
-        a(href="/todos/"+todo.id+"/complete") COMPLETE
-        a(href="/todos/"+todo.id+"/delete") DELETE
+      div
+          button.btn(type='button')
+            a(href="/todos/"+todo.id+"/uncomplete").btn LOWER PRIORITY
+
+          button.btn(type='button')
+            a(href="/todos/"+todo.id+"/complete").btn COMPLETE
+
+          button.btn(type='button')
+            a(href="/todos/"+todo.id+"/delete").btn DELETE
 
 
 
 
   h4 Make a Todo
   include ./_new_todo_form
-
-
-  h4 Current User
-  pre= JSON.stringify(currentUser, null, 4)
-  pre= JSON.stringify(todo, null, 4)
+    div
+        a.btn.btn-default(href="/logout") Logout

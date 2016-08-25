@@ -1,6 +1,9 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: white;
+  background-image: url("http://farm9.staticflickr.com/8621/28606163273_04a097b7fc_b.jpg");
+  background-repeat: no-repeat;
 }
 
 a {

@@ -8,10 +8,6 @@ const getUserById = function(userId){
   return db.one("select * from users where users.id=$1", [userId])
 }
 
-// const getAllToDoListItems = function(id){
-//   return db.any("select * from todo_list_items");
-// }
-
 const createUser = function(attributes) {
   const sql =  `
     INSERT INTO
@@ -71,7 +67,6 @@ const deleteTodo = function(todoId) {
   return db.none(sql, variables)
 }
 
-
 const authenticateUser = function(email, password){
   const sql = `
     SELECT
@@ -114,7 +109,6 @@ const uncompleteTodo = function(todoId){
   const variables = [todoId]
   return db.oneOrNone(sql, variables)
 }
-//updatetodo
 
 module.exports = {
   pgp: pgp,

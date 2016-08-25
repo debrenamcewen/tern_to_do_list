@@ -2,9 +2,6 @@ var express = require('express');
 var router = express.Router();
 var database = require('../database');
 
-/* GET home page. */
-
-
 router.get('/', function(req, res){
   if (!req.loggedIn){
     res.render('homepage');
@@ -29,12 +26,11 @@ router.get('/', function(req, res){
         error: error
       })
     })
-
 });
 
 router.get('/login', function(req, res){
   res.render('login', {
-    error: 'not here'
+    error: 'Please Log In'
   })
 })
 
@@ -43,20 +39,6 @@ router.get('/signup', function(req, res){
     email: ''
   })
 })
-//
-// router.get('/todos', function(req, res){
-//   database.getAllItemsByUserId(req.session.userId)
-//     .then(todos => {
-//       res.render('todos/index', {
-//         todos: todos
-//       })
-//     })
-//     .catch(error => {
-//       res.render('error', {
-//         error: error
-//       })
-//     })
-// })
 
 router.post('/login', function(req, res){
   const email = req.body.email
@@ -67,12 +49,11 @@ router.post('/login', function(req, res){
       res.redirect('/')
     }else{
       res.render('login', {
-        error: 'Email or Password Not Found :('
+        error: 'Email or Password Not Found'
       })
     }
   })
 })
-
 
 router.post('/signup', function(req, res) {
   const attributes = req.body.user
@@ -81,7 +62,7 @@ router.post('/signup', function(req, res) {
   const password_confirmation = attributes.password_confirmation
     if (password !== '' && password !== password_confirmation){
       res.render('signup', {
-        error: 'passwords do not match',
+        error: 'Passwords Do Not Match',
         email: email,
         })
       } else {
@@ -98,16 +79,6 @@ router.post('/signup', function(req, res) {
           })
     }
 })
-
-// router.delete("/todos/"+todo.id, function(req, res){
-//   todo.remove({
-//     id: req.params.todo_id
-//   }, function (err, todo) {
-//     if(err)
-//      res.send(err)
-//   }
-//   })
-// })
 
 router.post('/todos', function(req, res){
   var todo = req.body.todo
@@ -159,32 +130,6 @@ router.get('/todos/:todoId/uncomplete', function(req, res){
       })
     })
 })
-
-
-// need a post for update
-
-
-// router.post('/profile', function(req,res){
-//   const attributes = req.body.user
-//   const description = attributes.description
-//   const note = attributes.note
-//   const rank = attributes.rank
-//   const due_date = attributes.due_date
-//   if(description){
-//     Promise.all([
-//       database.getUserById(userId),
-//       database.createToDo(attributes)
-//     // ])
-//       .then( results => {
-//         login(req, user.id)
-//           res.redirect('/')
-//         }).catch(error => {
-//           res.render('profile', {
-//             error: error,
-//             description: description
-//         })
-//
-
 
 router.get('/logout', function(req, res){
   req.session = null
