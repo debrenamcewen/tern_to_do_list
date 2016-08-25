@@ -2,10 +2,10 @@
 
 To Do List
 
-Description: 
-Complete a to do list app.
+Advisories: 
+Keep in mind that for this application that you will have to hand create the database to handle this application. We are still in alpha. Thanks.
 
-User Stories:
+What you will be able to do with this app:
 
 - [ ] I can create to do list items.
 - [ ] I can delete unwanted to do list items.
