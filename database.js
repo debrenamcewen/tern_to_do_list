@@ -28,6 +28,50 @@ const createUser = function(attributes) {
   return db.oneOrNone(sql, variables)
 }
 
+const createTodo = function(attributes) {
+  const sql =  `
+    INSERT INTO
+      todo_list_items (user_id, description, note, rank, due_date)
+    VALUES
+      ($1, $2, $3, $4, $5)
+    RETURNING
+      *
+    `
+  const variables = [
+    attributes.userId,
+    attributes.description,
+    attributes.note,
+    attributes.rank,
+    attributes.due_date,
+  ]
+  return db.one(sql, variables)
+}
+
+const getAllItemsByUserId = function(userId) {
+  const sql =  `
+    SELECT
+      *
+    FROM
+      todo_list_items
+    WHERE
+      user_id=$1
+    `
+  const variables = [userId]
+  return db.manyOrNone(sql, variables)
+}
+
+const deleteTodo = function(todoId) {
+  const sql =  `
+    DELETE FROM
+      todo_list_items
+    WHERE
+      id=$1
+    `
+  const variables = [todoId]
+  return db.none(sql, variables)
+}
+
+
 const authenticateUser = function(email, password){
   const sql = `
     SELECT
@@ -45,10 +89,15 @@ const authenticateUser = function(email, password){
     .then(user => user ? user.id : null )
 }
 
+//updatetodo
+
 module.exports = {
   pgp: pgp,
   db: db,
+  deleteTodo: deleteTodo,
   authenticateUser: authenticateUser,
   createUser: createUser,
   getUserById: getUserById,
+  createTodo: createTodo,
+  getAllItemsByUserId: getAllItemsByUserId
 };

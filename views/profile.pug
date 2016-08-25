@@ -8,10 +8,23 @@ block content
   ul
     li
       a.btn.btn-default(href="/logout") Logout
-    li
-      a.btn.btn-default(href="/todo") Todo Lists
+    //- li
+    //-   a.btn.btn-default(href="/signup") Todo Lists
+
+  p Big List of Things You Are Going to DO!
+  ul
+    for todo in todos
+      li
+        span= todo.description
+        a(href="/todos/"+todo.id+"/delete") DELETE
+        a(href="/todos/"+todo.id+"/complete") COMPLETE
+
+
+
+  h4 Make a Todo
+  include ./_new_todo_form
 
 
   h4 Current User
   pre= JSON.stringify(currentUser, null, 4)
-  pre= JSON.stringify(currentUser, null, 4)
+  pre= JSON.stringify(todo, null, 4)
