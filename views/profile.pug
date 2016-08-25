@@ -10,11 +10,19 @@ block content
       a.btn.btn-default(href="/logout") Logout
     //- li
     //-   a.btn.btn-default(href="/signup") Todo Lists
+
+  p Big List of Things You Are Going to DO!
+  ul
+    for todo in todos
+      li
+        span= todo.description
+        a(href="/todos/"+todo.id+"/delete") DELETE
+        a(href="/todos/"+todo.id+"/complete") COMPLETE
+
+
+
   h4 Make a Todo
   include ./_new_todo_form
-
-  p These are your #{todo.description}
-
 
 
   h4 Current User

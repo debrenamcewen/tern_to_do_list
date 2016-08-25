@@ -6,18 +6,30 @@ var database = require('../database');
 
 
 router.get('/', function(req, res){
-  if (req.loggedIn){
-    // database.getUserById(req.session.userId)
-    req.getCurrentUser()
-      .then(user => {
-        res.render('profile', {
-          currentUser: user,
-          todo: { }
-        });
-      })
-  }else{
+  if (!req.loggedIn){
     res.render('homepage');
+    return;
   }
+
+  Promise.all([
+    req.getCurrentUser(),
+    database.getAllItemsByUserId(req.session.userId)
+  ])
+    .then(results => {
+      const currentUser = results[0]
+      const todos = results[1]
+      res.render('profile', {
+        currentUser: currentUser,
+        todos: todos,
+        newTodo: {},
+      });
+    })
+    .catch(error => {
+      res.render('error', {
+        error: error
+      })
+    })
+
 });
 
 router.get('/login', function(req, res){
@@ -31,12 +43,20 @@ router.get('/signup', function(req, res){
     email: ''
   })
 })
-
-router.get('/todos', function(req, res){
-  res.render('homepage', {
-    description: ''
-  })
-})
+//
+// router.get('/todos', function(req, res){
+//   database.getAllItemsByUserId(req.session.userId)
+//     .then(todos => {
+//       res.render('todos/index', {
+//         todos: todos
+//       })
+//     })
+//     .catch(error => {
+//       res.render('error', {
+//         error: error
+//       })
+//     })
+// })
 
 router.post('/login', function(req, res){
   const email = req.body.email
@@ -79,6 +99,16 @@ router.post('/signup', function(req, res) {
     }
 })
 
+// router.delete("/todos/"+todo.id, function(req, res){
+//   todo.remove({
+//     id: req.params.todo_id
+//   }, function (err, todo) {
+//     if(err)
+//      res.send(err)
+//   }
+//   })
+// })
+
 router.post('/todos', function(req, res){
   var todo = req.body.todo
   todo.userId = req.session.userId
@@ -89,10 +119,25 @@ router.post('/todos', function(req, res){
     .catch(error => {
       res.render('new_todo_form', {
         error: error.toString(),
-        todo: todo,
+        newTodo: todo,
       })
     })
 })
+
+router.get('/todos/:todoId/delete', function(req, res){
+  database.deleteTodo(req.params.todoId)
+    .then(() => {
+      res.redirect('/')
+    })
+    .catch(error => {
+      res.render('error', {
+        error: error.toString(),
+      })
+    })
+})
+
+// need a post for update
+
 
 // router.post('/profile', function(req,res){
 //   const attributes = req.body.user

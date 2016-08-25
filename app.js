@@ -54,6 +54,9 @@ app.use('/users', users);
 
 app.get('/signup', users);
 app.post('/signup', users);
+app.delete('/todos/:id', index);
+
+//
 // from jared's notes
 
 // app.use('/login', login);
