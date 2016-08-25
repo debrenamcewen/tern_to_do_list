@@ -89,6 +89,31 @@ const authenticateUser = function(email, password){
     .then(user => user ? user.id : null )
 }
 
+const completeTodo = function(todoId){
+  const sql = `
+    UPDATE
+      todo_list_items
+    SET
+      completed=true
+    WHERE
+      id=$1
+  `
+  const variables = [todoId]
+  return db.oneOrNone(sql, variables)
+}
+
+const uncompleteTodo = function(todoId){
+  const sql = `
+    UPDATE
+      todo_list_items
+    SET
+      completed=false
+    WHERE
+      id=$1
+  `
+  const variables = [todoId]
+  return db.oneOrNone(sql, variables)
+}
 //updatetodo
 
 module.exports = {
@@ -99,5 +124,7 @@ module.exports = {
   createUser: createUser,
   getUserById: getUserById,
   createTodo: createTodo,
-  getAllItemsByUserId: getAllItemsByUserId
+  getAllItemsByUserId: getAllItemsByUserId,
+  uncompleteTodo: uncompleteTodo,
+  completeTodo: completeTodo
 };

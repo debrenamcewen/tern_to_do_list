@@ -136,6 +136,31 @@ router.get('/todos/:todoId/delete', function(req, res){
     })
 })
 
+router.get('/todos/:todoId/complete', function(req, res){
+  database.completeTodo(req.params.todoId)
+    .then(() => {
+      res.redirect('/')
+    })
+    .catch(error => {
+      res.render('error', {
+        error: error.toString(),
+      })
+    })
+})
+
+router.get('/todos/:todoId/uncomplete', function(req, res){
+  database.uncompleteTodo(req.params.todoId)
+    .then(() => {
+      res.redirect('/')
+    })
+    .catch(error => {
+      res.render('error', {
+        error: error.toString(),
+      })
+    })
+})
+
+
 // need a post for update
 
 
