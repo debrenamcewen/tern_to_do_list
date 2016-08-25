@@ -1,4 +1,4 @@
-# tern_to_do_list
+# tern_to_do_list (STEPS app)
 
 To Do List
 
