@@ -28,5 +28,5 @@ Specs:
 - [ ] Deploy the app to heroku
 ![ScreenShot](https://c3.staticflickr.com/8/7752/29127459546_ee93f060e7_b.jpg)
 
-
+![ScreenShot](http://farm9.staticflickr.com/8621/28606163273_04a097b7fc_b.jpg)
 
