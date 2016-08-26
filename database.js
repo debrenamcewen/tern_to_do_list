@@ -1,16 +1,9 @@
 'use strict';
 const bcrypt = require('bcrypt-nodejs')
 const databaseName = process.env.NODE_ENV === 'tern_to_do_list'
-const pg = require('pg').native
 const pgp = require('pg-promise')();
 const connectionString = `postgres://${process.env.USER}@localhost:5432/tern_to_do_list`
 const db = pgp(connectionString);
-
-client = new pg.Client(connectionString);
-client.connect();
-query = client.query('SELECT * FROM users');
-query = client.query('SELECT * FROM todo_list_items');
-query.on('end', function() { client.end(); });
 
 const getUserById = function(userId){
   return db.one("select * from users where users.id=$1", [userId])
