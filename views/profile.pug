@@ -10,26 +10,36 @@ block content
   div.title
     h3 Your Steps
     for todo in todos
-      table
+      div
+
+        span(style='font-size: 20px')= todo.description
 
           //- h2 Step:
-          //- span= todo.description
-          td Note:
-              span= todo.note
-          td
-              span= todo.due_date
-          tr
-            h2 Step
+        div.note
+          div
+              span(style='font-style: italic')= todo.note
+          div
+              span(style='font-size: 13px')= humanizeDate(todo.due_date)
+          div
+            if todo.completed
+              input.checkbox-link(name=Math.random() type='checkbox' data-href="/todos/"+todo.id+"/uncomplete" checked='checked')
+            else
+              input.checkbox-link(type='checkbox' data-href="/todos/"+todo.id+"/complete")
+
+            a.button.button-link(name=Math.random() type='button' data-href="/todos/"+todo.id+"/delete") DELETE
+
+    p Completed Steps
+      for todo in todos
+        div
+          if todo.completed
             span= todo.description
-              if todo.completed
-                input.checkbox-link(type='checkbox' data-href="/todos/"+todo.id+"/uncomplete" checked)
-              else
-                input.checkbox-link(type='checkbox' data-href="/todos/"+todo.id+"/complete")
-              a.button.button-link(type='button' data-href="/todos/"+todo.id+"/delete") DELETE
 
 
-  h4 Make a Todo
-  include ./_new_todo_form
-  div
-    button.btn(type='button')
-      a(href="/logout") Logout
+    .row
+      .col-xs-6
+      .col-sm-4
+          h4 Make a Todo
+            include ./_new_todo_form
+            div.btn
+              button.btn(type='button')
+                a(href="/logout") Logout

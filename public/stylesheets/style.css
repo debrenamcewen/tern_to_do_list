@@ -1,28 +1,27 @@
 body {
-  padding: 20px;
-  margin: 20px;
   font-family: Times, sans-serif;
   height: 100%;
   position: relative;
   background-size: 100% auto;
+  background-color: black;
 
 }
 
 div.jumbotron {
-  background-image: url("/images/background.png");
+  background-image: url("/images/background5.png");
   background-repeat: no-repeat;
-  padding: 20px;
+  /*padding: 20px;*/
   position: relative;
   height: 100%;
   width: 100%;
-  background-size: 100% auto;
+  background-color: black;
+
+  background-size: 95%;
 
 }
 
-
 * {
   font-family: "Montserrat", sans-serif;
-
 }
 
 h3 {
@@ -33,64 +32,48 @@ div.title {
   color: white;
 }
 
-div.column {
+h4 {
   color: white;
 }
 
-div.row {
-  color: white;
+a {
+  padding-left: 30px;
+  padding-right: 30px;
+  text-align: right;
 }
 
 p {
   color: white;
 }
 
-h4 {
-  color: white;
-}
-
-a {
-  padding-left: 50px;
-}
-
 todo.description{
   padding-left: 50px;
 }
 
-
+.row {
+  background-color: black;
+}
 
 div.list {
-  padding: relative;
+  /*padding: relative;*/
   color: white;
   font-size: 24px;
-  text-align: center;
   font-family: "Montserrat", sans-serif;
   /*background: white;*/
 }
-
-div.date {
-  font-size: 16px;
-
-}
-
-div.newTodo {
-  color: black;
-}
-
 
 a {
   color: #00B7FF;
 }
 
-.form {
+div.form {
   color: black;
 }
 
-li.list-group-item {
-  margin: 10px;
-  position: relative;
+.row {
+  column-rule: 5px;
 }
 
-ul.list-group {
-  font-size: 100px;
+h4 {
+  text-align: right;
 }

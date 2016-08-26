@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var database = require('../database');
+var moment = require('moment');
 
 router.get('/', function(req, res){
   if (!req.loggedIn){
@@ -19,6 +20,7 @@ router.get('/', function(req, res){
         currentUser: currentUser,
         todos: todos,
         newTodo: {},
+        humanizeDate: humanizeDate
       });
     })
     .catch(error => {
@@ -27,6 +29,10 @@ router.get('/', function(req, res){
       })
     })
 });
+
+const humanizeDate = function(date){
+  return moment(date).format('MMM Do YY');
+}
 
 router.get('/login', function(req, res){
   res.render('login', {
