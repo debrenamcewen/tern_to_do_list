@@ -7,25 +7,29 @@ block content
 
 
   h2 It All Starts With A Step
-  ul
+  div.title
     h3 Your Steps
     for todo in todos
-      li
-        span= todo.description
-      div
-          button.btn(type='button')
-            a(href="/todos/"+todo.id+"/uncomplete").btn LOWER PRIORITY
+      table
 
-          button.btn(type='button')
-            a(href="/todos/"+todo.id+"/complete").btn COMPLETE
-
-          button.btn(type='button')
-            a(href="/todos/"+todo.id+"/delete").btn DELETE
-
-
+          //- h2 Step:
+          //- span= todo.description
+          td Note:
+              span= todo.note
+          td
+              span= todo.due_date
+          tr
+            h2 Step
+            span= todo.description
+              if todo.completed
+                input.checkbox-link(type='checkbox' data-href="/todos/"+todo.id+"/uncomplete" checked)
+              else
+                input.checkbox-link(type='checkbox' data-href="/todos/"+todo.id+"/complete")
+              a.button.button-link(type='button' data-href="/todos/"+todo.id+"/delete") DELETE
 
 
   h4 Make a Todo
   include ./_new_todo_form
-    div
-        a.btn.btn-default(href="/logout") Logout
+  div
+    button.btn(type='button')
+      a(href="/logout") Logout

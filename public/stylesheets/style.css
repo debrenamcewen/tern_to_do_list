@@ -1,11 +1,96 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  color: white;
-  background-image: url("http://farm9.staticflickr.com/8621/28606163273_04a097b7fc_b.jpg");
+  padding: 20px;
+  margin: 20px;
+  font-family: Times, sans-serif;
+  height: 100%;
+  position: relative;
+  background-size: 100% auto;
+
+}
+
+div.jumbotron {
+  background-image: url("/images/background.png");
   background-repeat: no-repeat;
+  padding: 20px;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background-size: 100% auto;
+
+}
+
+
+* {
+  font-family: "Montserrat", sans-serif;
+
+}
+
+h3 {
+  color: white;
+}
+
+div.title {
+  color: white;
+}
+
+div.column {
+  color: white;
+}
+
+div.row {
+  color: white;
+}
+
+p {
+  color: white;
+}
+
+h4 {
+  color: white;
 }
 
 a {
+  padding-left: 50px;
+}
+
+todo.description{
+  padding-left: 50px;
+}
+
+
+
+div.list {
+  padding: relative;
+  color: white;
+  font-size: 24px;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  /*background: white;*/
+}
+
+div.date {
+  font-size: 16px;
+
+}
+
+div.newTodo {
+  color: black;
+}
+
+
+a {
   color: #00B7FF;
+}
+
+.form {
+  color: black;
+}
+
+li.list-group-item {
+  margin: 10px;
+  position: relative;
+}
+
+ul.list-group {
+  font-size: 100px;
 }

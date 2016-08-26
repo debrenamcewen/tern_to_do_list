@@ -16,6 +16,8 @@ CREATE TABLE todo_list_items (
   description VARCHAR(255) NOT NULL,
   note TEXT,
   rank INTEGER,
+  completed BOOLEAN NOT NULL DEFAULT false,
+  created_at TIMESTAMP NOT NULL DEFAULT now(),
   due_date DATE NOT NULL
 );
 
