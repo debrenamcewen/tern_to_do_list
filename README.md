@@ -1,4 +1,6 @@
-# tern_to_do_list (STEPS app)
+# tern_to_do_list (ST3PS app)
+
+Check out app <a href='https://st3ps.herokuapp.com/'>here</a>.
 
 To Do List
 
@@ -25,7 +27,7 @@ Specs:
 - [x] Use `Postgresql`
 - [x] Use `node` and `express`
 - [X] The artifact produced is properly licensed, preferably with the MIT license.
-- [ ] Deploy the app to heroku
+- [x] Deploy the app to heroku
 ![ScreenShot](https://c3.staticflickr.com/8/7752/29127459546_ee93f060e7_b.jpg)
 
 ![ScreenShot](http://farm9.staticflickr.com/8621/28606163273_04a097b7fc_b.jpg)
