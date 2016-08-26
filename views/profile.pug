@@ -7,25 +7,39 @@ block content
 
 
   h2 It All Starts With A Step
-  ul
+  div.title
     h3 Your Steps
     for todo in todos
-      li
-        span= todo.description
       div
-          button.btn(type='button')
-            a(href="/todos/"+todo.id+"/uncomplete").btn LOWER PRIORITY
 
-          button.btn(type='button')
-            a(href="/todos/"+todo.id+"/complete").btn COMPLETE
+        span(style='font-size: 20px')= todo.description
 
-          button.btn(type='button')
-            a(href="/todos/"+todo.id+"/delete").btn DELETE
+          //- h2 Step:
+        div.note
+          div
+              span(style='font-style: italic')= todo.note
+          div
+              span(style='font-size: 13px')= humanizeDate(todo.due_date)
+          div
+            if todo.completed
+              input.checkbox-link(name=Math.random() type='checkbox' data-href="/todos/"+todo.id+"/uncomplete" checked='checked')
+            else
+              input.checkbox-link(type='checkbox' data-href="/todos/"+todo.id+"/complete")
+
+            a.button.button-link(name=Math.random() type='button' data-href="/todos/"+todo.id+"/delete") DELETE
+
+    p Completed Steps
+      for todo in todos
+        div
+          if todo.completed
+            span= todo.description
 
 
-
-
-  h4 Make a Todo
-  include ./_new_todo_form
-    div
-        a.btn.btn-default(href="/logout") Logout
+    .row
+      .col-xs-6
+      .col-sm-4
+          h4 Make a Todo
+            include ./_new_todo_form
+            div.btn
+              button.btn(type='button')
+                a(href="/logout") Logout

@@ -1,4 +1,5 @@
 'use strict';
+const bcrypt = require('bcrypt-nodejs')
 const databaseName = process.env.NODE_ENV === 'tern_to_do_list'
 const pgp = require('pg-promise')();
 const connectionString = `postgres://${process.env.USER}@localhost:5432/tern_to_do_list`
@@ -17,9 +18,11 @@ const createUser = function(attributes) {
     RETURNING
       *
     `
+
+  const encrypted_password = bcrypt.hashSync(attributes.password)
   const variables = [
     attributes.email,
-    attributes.password,
+    encrypted_password,
   ]
   return db.oneOrNone(sql, variables)
 }
@@ -51,6 +54,9 @@ const getAllItemsByUserId = function(userId) {
       todo_list_items
     WHERE
       user_id=$1
+    ORDER BY
+      created_at ASC,
+      id DESC
     `
   const variables = [userId]
   return db.manyOrNone(sql, variables)
@@ -70,18 +76,19 @@ const deleteTodo = function(todoId) {
 const authenticateUser = function(email, password){
   const sql = `
     SELECT
-      id
+      id, encrypted_password
     FROM
       users
     WHERE
       email=$1
-    AND
-      encrypted_password=$2
     LIMIT
       1
   `
-  return db.oneOrNone(sql, [email, password])
-    .then(user => user ? user.id : null )
+  return db.oneOrNone(sql, [email])
+    .then(user => {
+      return user && bcrypt.compareSync(password, user.encrypted_password) ?
+        user.id : null;
+    })
 }
 
 const completeTodo = function(todoId){

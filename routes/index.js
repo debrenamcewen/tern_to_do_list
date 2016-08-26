@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var database = require('../database');
+var moment = require('moment');
 
 router.get('/', function(req, res){
   if (!req.loggedIn){
@@ -19,6 +20,7 @@ router.get('/', function(req, res){
         currentUser: currentUser,
         todos: todos,
         newTodo: {},
+        humanizeDate: humanizeDate
       });
     })
     .catch(error => {
@@ -27,6 +29,10 @@ router.get('/', function(req, res){
       })
     })
 });
+
+const humanizeDate = function(date){
+  return moment(date).format('MMM Do YY');
+}
 
 router.get('/login', function(req, res){
   res.render('login', {
@@ -43,16 +49,23 @@ router.get('/signup', function(req, res){
 router.post('/login', function(req, res){
   const email = req.body.email
   const password = req.body.password
-  database.authenticateUser(email, password).then(userId => {
-    if (userId){
-      req.session.userId = userId
-      res.redirect('/')
-    }else{
-      res.render('login', {
-        error: 'Email or Password Not Found'
+  database.authenticateUser(email, password)
+    .then(userId => {
+      if (userId){
+        req.session.userId = userId
+        res.redirect('/')
+      }else{
+        res.render('login', {
+          error: 'Email or Password Not Found'
+        })
+      }
+    })
+    .catch(error => {
+      // console.log('error?', arguments)
+      res.render('error', {
+        error: error,
       })
-    }
-  })
+    })
 })
 
 router.post('/signup', function(req, res) {
@@ -89,7 +102,7 @@ router.post('/todos', function(req, res){
     })
     .catch(error => {
       res.render('new_todo_form', {
-        error: error.toString(),
+        error: error,
         newTodo: todo,
       })
     })
@@ -102,7 +115,7 @@ router.get('/todos/:todoId/delete', function(req, res){
     })
     .catch(error => {
       res.render('error', {
-        error: error.toString(),
+        error: error,
       })
     })
 })
@@ -114,7 +127,7 @@ router.get('/todos/:todoId/complete', function(req, res){
     })
     .catch(error => {
       res.render('error', {
-        error: error.toString(),
+        error: error,
       })
     })
 })
@@ -126,7 +139,7 @@ router.get('/todos/:todoId/uncomplete', function(req, res){
     })
     .catch(error => {
       res.render('error', {
-        error: error.toString(),
+        error: error
       })
     })
 })
