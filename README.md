@@ -29,3 +29,14 @@ Specs:
 ![ScreenShot](https://c3.staticflickr.com/8/7752/29127459546_ee93f060e7_b.jpg)
 
 ![ScreenShot](http://farm9.staticflickr.com/8621/28606163273_04a097b7fc_b.jpg)
+
+How to get Started: 
+- Clone github
+- Run 'npm install' on the command line
+- Open schema.sql file
+- Create a tern_to_do_list database - <a href='https://www.postgresql.org/docs/9.0/static/sql-createdatabase.html'> how to create a database in postgresql </a>
+- Create tables for 'users' and 'todo_list_items' based on schema - <a href='https://www.postgresql.org/docs/8.1/static/sql-createtable.html'> how to create a table in postgresql </a>
+- Quit out of database using '\q' in command line
+- Run 'psql tern_to_do_list < schema.sql' in command line
+- Run 'nodemon' or 'npm start' in command line
+- Good to go!
